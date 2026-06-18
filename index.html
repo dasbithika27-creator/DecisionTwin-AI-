@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DecisionTwin AI — Simulate B2B buyer decisions before you launch</title>
+  <meta name="description" content="DecisionTwin AI models how B2B buying committees decide, negotiate and purchase — so you can find revenue leaks before you change a price, quote speed or delivery term." />
+  <meta property="og:title" content="DecisionTwin AI" />
+  <meta property="og:description" content="Simulate how B2B buyers decide — before you launch a price or term change." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://41bite.com" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark">🎯</span> DecisionTwin<span class="brand-ai">AI</span></a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#app" class="btn btn-sm btn-primary">Launch simulator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="badge">B2B revenue simulation · pre-launch testing</div>
+      <h1>Know how buyers will react<br><span class="grad">before you change a thing.</span></h1>
+      <p class="lede">
+        DecisionTwin AI models how an entire B2B buying committee decides, negotiates and
+        purchases — then shows you exactly where revenue leaks out of your funnel.
+        Test a price, quote speed or delivery change against thousands of synthetic buyers
+        without touching a single real customer.
+      </p>
+      <div class="hero-cta">
+        <a href="#app" class="btn btn-primary btn-lg">Run a free simulation →</a>
+        <a href="#how" class="btn btn-ghost btn-lg">See how it works</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>5</strong><span>committee personas</span></div>
+        <div><strong>4-stage</strong><span>explainable journey</span></div>
+        <div><strong>0</strong><span>real customers risked</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Problem ──────────────────────────────────────────────────────── -->
+  <section class="band">
+    <div class="wrap cols-3">
+      <div class="card">
+        <h3>💸 The price change you can't un-ship</h3>
+        <p>Raise a price 4% and you might win margin — or quietly lose 11% of deals at the negotiation stage. You only find out a quarter later.</p>
+      </div>
+      <div class="card">
+        <h3>🕐 The quote nobody answered fast enough</h3>
+        <p>Most B2B deals are lost before a human reads the quote. DecisionTwin shows how much revenue your turnaround time is bleeding.</p>
+      </div>
+      <div class="card">
+        <h3>🧩 The committee you can't see</h3>
+        <p>Procurement, the technical buyer, the CFO — each kills deals for different reasons. We simulate all of them, and tell you which one to fix.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── App / Simulator ──────────────────────────────────────────────── -->
+  <section class="app-section" id="app">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Run a live simulation</h2>
+        <p>Everything below runs in your browser. No login, no data leaves your device.</p>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="sim" role="tab">🧪 Simulate</button>
+        <button class="tab" data-tab="compare" role="tab">🔀 Compare A vs B</button>
+      </div>
+
+      <!-- Single sim -->
+      <div class="tabpane active" id="pane-sim">
+        <div class="sim-grid">
+          <form class="panel inputs" id="form-a">
+            <label class="field">
+              <span>Quick-start template</span>
+              <select id="template">
+                <option value="custom">Custom</option>
+                <option value="slow">Slow quote (pain point)</option>
+                <option value="fast">Fast quote (fix applied)</option>
+                <option value="leader">Price leader</option>
+                <option value="tooling">High-volume tooling</option>
+              </select>
+            </label>
+
+            <div class="field-group">
+              <h4>Commercial inputs</h4>
+              <label class="field"><span>Your price (£)</span><input type="number" id="base_price" value="12000" min="0" step="any" /></label>
+              <label class="field"><span>Competitor price (£)</span><input type="number" id="competitor_price" value="11500" min="0" step="any" /></label>
+              <label class="field range"><span>Quote turnaround <b id="qh_v">72h</b></span><input type="range" id="quote_time_hours" min="4" max="336" value="72" /></label>
+              <label class="field range"><span>Delivery lead time <b id="dd_v">21d</b></span><input type="range" id="delivery_days" min="1" max="90" value="21" /></label>
+              <label class="field range"><span>Available discount <b id="di_v">2%</b></span><input type="range" id="discount_available" min="0" max="30" value="2" step="0.5" /></label>
+              <label class="field"><span>Payment terms</span>
+                <select id="payment_terms">
+                  <option>Net 30</option><option>Net 60</option><option>Net 15</option><option>Net 7</option><option>Prepay</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <h4>Buyer persona mix</h4>
+              <label class="field range"><span>Price sensitivity <b id="ps_v">0.75</b></span><input type="range" id="price_sensitivity" min="0" max="1" value="0.75" step="0.01" /></label>
+              <label class="field range"><span>Urgency <b id="ur_v">0.50</b></span><input type="range" id="urgency" min="0" max="1" value="0.5" step="0.01" /></label>
+              <label class="field range"><span>Loyalty to supplier <b id="lo_v">0.35</b></span><input type="range" id="loyalty" min="0" max="1" value="0.35" step="0.01" /></label>
+              <label class="field range"><span>Authority level <b id="al_v">0.65</b></span><input type="range" id="authority_level" min="0" max="1" value="0.65" step="0.01" /></label>
+              <label class="field range"><span>Risk tolerance <b id="rt_v">0.45</b></span><input type="range" id="risk_tolerance" min="0" max="1" value="0.45" step="0.01" /></label>
+            </div>
+
+            <div class="field-group">
+              <h4>Run parameters</h4>
+              <label class="field"><span>Synthetic buyers</span>
+                <select id="num_agents"><option>100</option><option>250</option><option>500</option><option selected>1000</option><option>2000</option><option>5000</option></select>
+              </label>
+              <label class="field"><span>Annual deal count (£/yr scaling)</span><input type="number" id="annual_deals" value="500" min="1" /></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">🚀 Run simulation</button>
+          </form>
+
+          <div class="panel results" id="results">
+            <div class="empty" id="empty-state">
+              <div class="empty-icon">📊</div>
+              <p>Configure a scenario and hit <strong>Run simulation</strong>.<br>Your Revenue Leak Map appears here.</p>
+            </div>
+            <div id="result-body" hidden></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compare -->
+      <div class="tabpane" id="pane-compare">
+        <p class="compare-intro">Run two scenarios with the <strong>same random seed</strong> so the only differences come from your changes — not sampling noise.</p>
+        <div class="compare-forms" id="compare-forms"></div>
+        <button class="btn btn-primary btn-block" id="run-compare">🔀 Compare A vs B</button>
+        <div id="compare-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ─────────────────────────────────────────────────── -->
+  <section class="band how" id="how">
+    <div class="wrap">
+      <div class="section-head"><h2>How DecisionTwin AI works</h2><p>Explainable by design. Every lost deal has a reason you can act on.</p></div>
+
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div>
+          <h3>Buying committee simulation</h3>
+          <p>Every B2B deal is decided by a committee, not one buyer. We sample synthetic buyers from five real-world roles, each with its own decision drivers:</p>
+          <div class="persona-table">
+            <div><b>Procurement Manager</b><span>30%</span><em>Price, payment terms</em></div>
+            <div><b>Technical Buyer</b><span>20%</span><em>Delivery, spec fit</em></div>
+            <div><b>Business Decision Maker</b><span>20%</span><em>Speed, urgency</em></div>
+            <div><b>End User</b><span>20%</span><em>Delivery, loyalty</em></div>
+            <div><b>CFO</b><span>10%</span><em>Price, risk</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div>
+          <h3>4-stage explainable decision journey</h3>
+          <div class="journey">
+            <span>RFQ Submission</span><i>→</i><span>Quote Evaluation</span><i>→</i><span>Negotiation</span><i>→</i><span>Approval</span><i>→</i><span class="won">Purchase</span>
+          </div>
+          <p>At each stage a buyer may drop — and we record <em>why</em>: won't engage, quote too slow, price gap, delivery, payment terms, or internal veto. No black-box scores.</p>
+        </div>
+      </div>
+
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div>
+          <h3>The Revenue Leak Map</h3>
+          <p>We aggregate every lost deal, group by stage and reason, multiply by deal value, and sort by £ impact. The top row is your highest-ROI fix — scaled to your annual pipeline.</p>
+        </div>
+      </div>
+
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div>
+          <h3>Compare before you commit</h3>
+          <p>Run any two scenarios side by side and ship the variant that wins. Test the price rise, the faster quote, the expedited delivery — without risking a single real customer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ──────────────────────────────────────────────────────── -->
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="section-head"><h2>Simple, scalable pricing</h2><p>Start free. Upgrade when simulation becomes part of how you sell.</p></div>
+      <div class="price-grid">
+        <div class="price-card">
+          <h3>Free Trial</h3><div class="price">£0<small>/mo</small></div>
+          <ul><li>10 simulations / mo</li><li>Up to 1,000 buyers / run</li><li>3 scenarios</li><li>14-day trial</li></ul>
+          <a href="#app" class="btn btn-ghost btn-block">Start free</a>
+        </div>
+        <div class="price-card">
+          <h3>Starter</h3><div class="price">£499<small>/mo</small></div>
+          <ul><li>100 simulations / mo</li><li>Up to 2,000 buyers / run</li><li>25 scenarios · 3 seats</li><li>CSV export</li></ul>
+          <a href="#contact" class="btn btn-ghost btn-block">Choose Starter</a>
+        </div>
+        <div class="price-card featured">
+          <div class="ribbon">Most popular</div>
+          <h3>Growth</h3><div class="price">£1,499<small>/mo</small></div>
+          <ul><li>500 simulations / mo</li><li>Up to 5,000 buyers / run</li><li>Unlimited scenarios · 10 seats</li><li>API access · priority support</li></ul>
+          <a href="#contact" class="btn btn-primary btn-block">Choose Growth</a>
+        </div>
+        <div class="price-card">
+          <h3>Scale</h3><div class="price">£3,999<small>/mo</small></div>
+          <ul><li>2,500 simulations / mo</li><li>Up to 10,000 buyers / run</li><li>Unlimited seats · API</li><li>Priority support</li></ul>
+          <a href="#contact" class="btn btn-ghost btn-block">Choose Scale</a>
+        </div>
+      </div>
+      <p class="enterprise">Need SSO, on-prem or custom personas? <a href="#contact">Talk to us about Enterprise →</a></p>
+    </div>
+  </section>
+
+  <!-- ── CTA / contact ────────────────────────────────────────────────── -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2>Stop guessing how buyers will react.</h2>
+      <p>Book a 20-minute walkthrough and we'll model your real pricing on your real pipeline.</p>
+      <a href="mailto:hello@41bite.com?subject=DecisionTwin%20AI%20demo" class="btn btn-primary btn-lg">Book a demo</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>🎯 DecisionTwin AI — © <span id="year"></span></span>
+      <span class="footer-links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="mailto:hello@41bite.com">Contact</a></span>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

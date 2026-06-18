@@ -1,0 +1,6 @@
+# Netlify / Cloudflare Pages redirects
+# Force the apex domain (optional — uncomment if you want www → apex)
+# https://www.41bite.com/*  https://41bite.com/:splat  301!
+
+# SPA-style fallback: serve index for any unknown path
+/*  /index.html  200
